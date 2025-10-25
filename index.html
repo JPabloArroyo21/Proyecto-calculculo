@@ -11,12 +11,13 @@
       padding: 0;
       background: #f5f7fa;
       color: #333;
+      overflow-x: hidden;
     }
 
     header {
       background: linear-gradient(90deg, #003366, #0055aa);
       color: #fff;
-      padding: 20px 40px 20px 140px; /* espacio para el logo */
+      padding: 20px 40px 20px 140px;
       display: flex;
       align-items: center;
       position: relative;
@@ -35,23 +36,26 @@
       border-radius: 10px;
       background-color: transparent;
       z-index: 1000;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.4s ease, opacity 0.4s ease;
       opacity: 0.9;
+      animation: float 3s ease-in-out infinite;
     }
 
     .logo:hover {
-      transform: scale(1.1);
+      transform: scale(1.1) rotate(3deg);
       opacity: 1;
     }
 
     header h1 {
       margin: 0;
       font-size: 1.8em;
+      animation: fadeSlide 1.5s ease-in-out;
     }
 
     header p {
       margin: 5px 0 0;
       font-size: 0.9em;
+      animation: fadeSlide 2s ease-in-out;
     }
 
     nav {
@@ -75,6 +79,23 @@
       text-decoration: none;
       transition: background-color 0.3s, transform 0.2s;
       font-weight: 500;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav ul li a:hover::after {
+      width: 80%;
     }
 
     nav ul li a:hover {
@@ -96,6 +117,7 @@
       color: #004d99;
       border-bottom: 2px solid #004d99;
       padding-bottom: 5px;
+      animation: fadeSlide 1.2s ease-in;
     }
 
     .hidden {
@@ -109,6 +131,13 @@
       margin: 20px auto;
       border: 1px solid #ccc;
       border-radius: 6px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: zoomIn 1.5s ease;
+    }
+
+    .illustration:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     .formula {
@@ -118,10 +147,31 @@
       border-left: 4px solid #004d99;
       display: inline-block;
       margin: 10px 0;
+      animation: fadeIn 1s ease;
     }
 
-    .linkList ul {
-      margin-left: 20px;
+    ul, p, ol {
+      animation: fadeInUp 1s ease-in;
+    }
+
+    button {
+      transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0073e6;
+      transform: scale(1.05);
+    }
+
+    iframe {
+      margin: 10px;
+      border-radius: 8px;
+      transition: transform 0.4s ease;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    iframe:hover {
+      transform: scale(1.02);
     }
 
     footer {
@@ -131,8 +181,10 @@
       padding: 15px 0;
       margin-top: 20px;
       font-size: 0.9em;
+      animation: fadeIn 2s ease-in;
     }
 
+    /* 🔹 ANIMACIONES */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -143,9 +195,29 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
     @keyframes slideInLeft {
       from { opacity: 0; transform: translateX(-100px); }
       to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
   </style>
 </head>
@@ -178,23 +250,21 @@
     <p>¡Te damos la bienvenida a este recorrido por el Cálculo Integral! En esta página exploraremos a fondo, de forma clara y visual, el concepto del <strong>Área bajo la curva</strong>.</p>
     <p>Esta no es solo una idea abstracta; es una de las aplicaciones fundamentales y más poderosas del <em>Cálculo Integral</em>, sirviendo como puente entre la geometría (el cálculo de áreas) y el análisis matemático (la integración).</p>
     <p>Navega a través de las diferentes secciones para descubrir su <strong>definición</strong> formal, el <strong>método</strong> exacto para calcularla (usando el Teorema Fundamental del Cálculo), <strong>ejemplos</strong> prácticos y las múltiples <strong>aplicaciones</strong> que tiene en campos tan diversos como la física, la economía y la estadística.</p>
-    <img class="illustration" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Integral_as_area_under_curve.svg" alt="Ilustración del área bajo la curva">
+    <img class="illustration" src="images/portada.png" alt="Ilustración del área bajo la curva">
   </section>
 
   <section id="definicion" class="hidden">
     <h2>Definición</h2>
     <p>Matemáticamente, el área bajo la curva de una función continua y no negativa <em>f(x)</em>, en un intervalo cerrado [<em>a</em>, <em>b</em>], se define formalmente como la <strong>integral definida</strong> de esa función entre dichos límites.</p>
     <p>Esta integral representa conceptualmente la suma de las áreas de infinitos rectángulos de altura <em>f(x)</em> y de base infinitesimalmente pequeña (<em>dx</em>), abarcando todo el intervalo desde <em>x=a</em> hasta <em>x=b</em>. Es el resultado límite de lo que se conoce como la <strong>Suma de Riemann</strong>.</p>
-    <p>La notación estándar es:</p>
     <p class="formula">A = ∫<sub>a</sub><sup>b</sup> f(x) dx</p>
-    <p>Donde:</p>
-    <ul style="margin-left: 20px;">
-        <li><em>f(x)</em> es la función (el 'techo' del área).</li>
-        <li><em>dx</em> representa el diferencial de x (la base de cada rectángulo infinitesimal).</li>
-        <li><em>a</em> es el límite inferior de integración.</li>
-        <li><em>b</em> es el límite superior de integración.</li>
+    <ul>
+      <li><em>f(x)</em> es la función (el 'techo' del área).</li>
+      <li><em>dx</em> representa el diferencial de x (la base de cada rectángulo infinitesimal).</li>
+      <li><em>a</em> es el límite inferior de integración.</li>
+      <li><em>b</em> es el límite superior de integración.</li>
     </ul>
-    <img class="illustration" src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Definite_integral_as_area.svg" alt="Área bajo una función">
+    <img class="illustration" src="images/dafinicion.png" alt="Área bajo una función">
   </section>
 
   <section id="metodo" class="hidden">
@@ -208,8 +278,7 @@
 
   <section id="ejemplos" class="hidden">
     <h2>Ejemplos prácticos</h2>
-    <p>A continuación se presentan videos con diferentes ejemplos del cálculo del área bajo la curva, mostrando paso a paso cómo aplicar la integral definida en diversos tipos de funciones:</p>
-
+    <p>A continuación se presentan videos con diferentes ejemplos del cálculo del área bajo la curva:</p>
     <div style="text-align:center;">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/s1BMqFdtZfM" frameborder="0" allowfullscreen></iframe>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/s1BMqFdtZfM" frameborder="0" allowfullscreen></iframe>
@@ -221,38 +290,30 @@
     <h2>Aplicaciones y Herramientas</h2>
     <p>Explora estas herramientas interactivas para graficar funciones y calcular integrales definidas (área bajo la curva):</p>
     <ul>
-      <li><a href="https://www.desmos.com/calculator" target="_blank"><strong>Desmos</strong></a>: Un potente graficador en línea ideal para visualizar tu función <em>f(x)</em>.</li>
-      <li><a href="https://www.wolframalpha.com/" target="_blank"><strong>WolframAlpha</strong></a>: Calcula integrales definidas simbólicamente y muestra los pasos. (Ejemplo de búsqueda: <em>"integrate x^2 from 0 to 2"</em>)</li>
-      <li><a href="https://www.geogebra.org/classic" target="_blank"><strong>GeoGebra</strong></a>: Excelente para visualizar el concepto con sumas de Riemann (la aproximación con rectángulos).</li>
-      <li><a href="https://www.integral-calculator.com/" target="_blank"><strong>Integral Calculator</strong></a>: Una calculadora específica para integrales que muestra el procedimiento paso a paso.</li>
+      <li><a href="https://www.desmos.com/calculator" target="_blank"><strong>Desmos</strong></a></li>
+      <li><a href="https://www.wolframalpha.com/" target="_blank"><strong>WolframAlpha</strong></a></li>
+      <li><a href="https://www.geogebra.org/classic" target="_blank"><strong>GeoGebra</strong></a></li>
+      <li><a href="https://www.integral-calculator.com/" target="_blank"><strong>Integral Calculator</strong></a></li>
     </ul>
 
     <hr style="margin: 25px 0;">
 
     <h3>Calculadora Numérica de Área (Regla del Trapecio)</h3>
-    <p>Esta mini-calculadora aproxima el área usando un método numérico (Regla del Trapecio). Mientras más subdivisiones (n) uses, más preciso será el resultado.</p>
-    <p><strong>Importante:</strong> Usa sintaxis de JavaScript para la función (ej. <code>x*x</code> para <em>x²</em>, <code>Math.sin(x)</code> para <em>sin(x)</em>, <code>Math.pow(x, 3)</code> para <em>x³</em>).</p>
-    
-    <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+    <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #ddd; animation: fadeInUp 1s ease;">
       <label for="calc-func" style="font-weight: bold;">Función f(x) =</label>
-      <input type="text" id="calc-func" value="x*x" style="width: 150px; margin-right: 10px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-      
-      <label for="calc-a" style="font-weight: bold;">Límite a =</label>
-      <input type="number" id="calc-a" value="0" style="width: 60px; margin-right: 10px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-      
-      <label for="calc-b" style="font-weight: bold;">Límite b =</label>
-      <input type="number" id="calc-b" value="2" style="width: 60px; margin-right: 10px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-      
-      <label for="calc-n" style="font-weight: bold;">Subdivisiones (n) =</label>
-      <input type="number" id="calc-n" value="1000" style="width: 80px; margin-right: 10px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-      
-      <button onclick="calcularArea()" style="padding: 5px 10px; background-color: #004d99; color: white; border: none; border-radius: 4px; cursor: pointer;">Calcular Área</button>
+      <input type="text" id="calc-func" value="x*x" style="width: 150px; margin-right: 10px;">
+      <label for="calc-a" style="font-weight: bold;">a =</label>
+      <input type="number" id="calc-a" value="0" style="width: 60px; margin-right: 10px;">
+      <label for="calc-b" style="font-weight: bold;">b =</label>
+      <input type="number" id="calc-b" value="2" style="width: 60px; margin-right: 10px;">
+      <label for="calc-n" style="font-weight: bold;">n =</label>
+      <input type="number" id="calc-n" value="1000" style="width: 80px; margin-right: 10px;">
+      <button onclick="calcularArea()">Calcular Área</button>
     </div>
-    
+
     <p style="font-size: 1.2em; margin-top: 15px;">
       <strong>Área Aproximada: <span id="calc-resultado" style="color: #004d99; font-weight: bold;">---</span></strong>
     </p>
-    <p><em>(Ejemplo pre-cargado: ∫<sub>0</sub><sup>2</sup> x² dx. El resultado exacto es 8/3 ≈ 2.666... ¡Compara la aproximación!)</em></p>
   </section>
 </div>
 
@@ -264,15 +325,13 @@
   function showSection(id) {
     const sections = ['inicio', 'definicion', 'metodo', 'ejemplos', 'aplicaciones'];
     sections.forEach(sec => document.getElementById(sec).classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const section = document.getElementById(id);
+    section.classList.remove('hidden');
+    section.scrollIntoView({ behavior: 'smooth' });
   }
 
   window.onload = () => showSection('inicio');
 
-  /**
-   * Función para la calculadora de área
-   */
   function calcularArea() {
     const funcString = document.getElementById('calc-func').value;
     const a = parseFloat(document.getElementById('calc-a').value);
@@ -281,54 +340,27 @@
     const resultadoSpan = document.getElementById('calc-resultado');
 
     if (isNaN(a) || isNaN(b) || isNaN(n) || n <= 0) {
-      resultadoSpan.textContent = "Error: Verifica los límites (a, b) y 'n' (debe ser > 0).";
-      resultadoSpan.style.color = "red";
-      return;
-    }
-    
-    if (a >= b) {
-      resultadoSpan.textContent = "Error: 'a' debe ser menor que 'b'.";
+      resultadoSpan.textContent = "Error en los datos.";
       resultadoSpan.style.color = "red";
       return;
     }
 
     let f;
     try {
-      // Creamos una función a partir del string del usuario
-      // Es más seguro que eval()
       f = new Function('x', 'return ' + funcString);
-      // Prueba rápida para ver si la sintaxis es válida
-      f(a); 
-    } catch (e) {
-      resultadoSpan.textContent = "Error en la sintaxis de la función. (Ej. 'x*x')";
+      f(a);
+    } catch {
+      resultadoSpan.textContent = "Error de sintaxis en f(x)";
       resultadoSpan.style.color = "red";
       return;
     }
 
     const deltaX = (b - a) / n;
-    let suma = 0;
-
-    try {
-        // Regla del Trapecio:
-        // Area ≈ (Δx/2) * [f(x₀) + 2f(x₁) + ... + 2f(xₙ₋₁) + f(xₙ)]
-        
-        suma += f(a); // f(x₀)
-        suma += f(b); // f(xₙ)
-
-        // Suma de los puntos intermedios 2*f(x₁) ... 2*f(xₙ₋₁)
-        for (let i = 1; i < n; i++) {
-          suma += 2 * f(a + i * deltaX);
-        }
-        
-        const area = (deltaX / 2) * suma;
-
-        resultadoSpan.textContent = area.toFixed(6); // Mostrar con 6 decimales
-        resultadoSpan.style.color = "#004d99"; // Color original
-        
-    } catch (e) {
-        resultadoSpan.textContent = "Error durante la evaluación de la función.";
-        resultadoSpan.style.color = "red";
-    }
+    let suma = f(a) + f(b);
+    for (let i = 1; i < n; i++) suma += 2 * f(a + i * deltaX);
+    const area = (deltaX / 2) * suma;
+    resultadoSpan.textContent = area.toFixed(6);
+    resultadoSpan.style.color = "#004d99";
   }
 </script>
 
