@@ -286,22 +286,65 @@
 
   <section id="ejemplos" class="hidden">
     <h2>Ejemplos prácticos</h2>
-    <p>A continuación se presentan videos con diferentes ejemplos del cálculo del área bajo la curva:</p>
-    <div style="text-align:center;">
-      <a href="https://youtu.be/pTzHVrT3TYw?si=i242qlPU04mo27kQ" target="_blank">
-  https://youtu.be/pTzHVrT3TYw?si=i242qlPU04mo27kQ
-</a>
-<br>
+<p>A continuación se presentan videos con diferentes ejemplos del cálculo del área bajo la curva:</p>
 
-<a href="https://youtu.be/NG3v9ZzZvlY?si=9xCMC-ihPdxKvUNL" target="_blank">
-  https://youtu.be/NG3v9ZzZvlY?si=9xCMC-ihPdxKvUNL
-</a>
-<br>
+<div style="text-align:center;">
 
-<a href="https://youtu.be/lys7Eg9zrEs?si=pjwNFuuFcDST4U7h" target="_blank">
-  https://youtu.be/lys7Eg9zrEs?si=pjwNFuuFcDST4U7h
-</a>
-    </div>
+  <!-- Ejemplo 1 -->
+  <h3>Ejemplo 1</h3>
+  <p><strong>Función:</strong> y = x + 1 en el intervalo [1, 4]<br>
+  <strong>Paso 1:</strong> Planteamos la integral definida que representa el área: ∫(x + 1) dx de 1 a 4<br>
+  <strong>Paso 2:</strong> Calculamos la antiderivada (primitiva) de la función: ∫(x + 1) dx = (x²)/2 + x<br>
+  <strong>Paso 3:</strong> Evaluamos en los límites del intervalo: [(x²)/2 + x] = (16/2 + 4) - (1/2 + 1) = 12 - 1.5 = 10.5<br>
+  <strong>Resultado:</strong> El área bajo la curva entre x = 1 y x = 4 es de 10.5 unidades cuadradas.<br>
+  <strong>Interpretación:</strong> En este caso, la función es positiva en todo el intervalo, por lo que el resultado de la integral representa directamente el área.
+  </p>
+  <a href="https://youtu.be/pTzHVrT3TYw?si=i242qlPU04mo27kQ" target="_blank">
+    Ver video del Ejemplo 1
+  </a>
+
+  <br><br>
+
+  <!-- Ejemplo 2 -->
+  <h3>Ejemplo 2</h3>
+  <p><strong>Función:</strong> y = x² - 2x - 3 y el eje x en el intervalo [1, 4]<br>
+  <strong>Paso 1:</strong> Encontramos los puntos donde la función corta el eje x: x² - 2x - 3 = 0 → (x - 3)(x + 1) = 0 → x = -1, 3.  
+  Dentro del intervalo [1, 4], la curva cruza el eje x en x = 3. Esto significa que el área debe dividirse en dos partes: una bajo el eje x y otra sobre él.<br>
+  <strong>Paso 2:</strong> Antiderivada de la función: ∫(x² - 2x - 3) dx = (x³)/3 - x² - 3x<br>
+  <strong>Paso 3:</strong> Evaluamos cada tramo:<br>
+  • En [1, 3]: F(3) - F(1) = [(27/3 - 9 - 9) - (1/3 - 1 - 3)] = (-9) - (-3.666) = -5.333 = -16/3<br>
+  • En [3, 4]: F(4) - F(3) = [(64/3 - 16 - 12) - (27/3 - 9 - 9)] = (21.33 - 18) = 3.33 = 7/3<br>
+  <strong>Paso 4:</strong> Sumamos los valores absolutos para obtener el área total: Área = |−16/3| + |7/3| = 23/3 ≈ 7.67 unidades cuadradas.<br>
+  <strong>Interpretación:</strong> La función cambia de signo dentro del intervalo, por lo que las áreas bajo y sobre el eje x deben sumarse en valor absoluto.
+  </p>
+  <a href="https://youtu.be/NG3v9ZzZvlY?si=9xCMC-ihPdxKvUNL" target="_blank">
+    Ver video del Ejemplo 2
+  </a>
+
+  <br><br>
+
+  <!-- Ejemplo 3 -->
+  <h3>Ejemplo 3</h3>
+  <p><strong>Función:</strong> y = x³ - x² - 2x<br>
+  <strong>Paso 1:</strong> Encontramos los puntos de corte con el eje x: x³ - x² - 2x = 0 → x(x - 2)(x + 1) = 0 → x = -1, 0, 2.<br>
+  <strong>Paso 2:</strong> Determinamos los intervalos donde la función cambia de signo:<br>
+  • f(x) > 0 en (−1, 0)  
+  • f(x) < 0 en (0, 2)<br>
+  Por lo tanto, utilizaremos los intervalos [−1, 0] y [0, 2] para calcular el área total.<br>
+  <strong>Paso 3:</strong> Calculamos la antiderivada: ∫(x³ - x² - 2x) dx = (x⁴)/4 - (x³)/3 - x²<br>
+  <strong>Paso 4:</strong> Evaluamos en cada intervalo:<br>
+  • En [−1, 0]: F(0) - F(−1) = [0] - [(1/4) + (1/3) - 1] = 5/12<br>
+  • En [0, 2]: F(2) - F(0) = [(16/4) - (8/3) - 4] - 0 = −8/3<br>
+  <strong>Paso 5:</strong> Sumamos las áreas en valor absoluto: Área total = |5/12| + |−8/3| = 5/12 + 32/12 = 37/12 ≈ 3.08<br>
+  <strong>Resultado:</strong> El área total entre la curva y el eje x en [−1, 2] es 37/12 ≈ 3.08 unidades cuadradas.<br>
+  <strong>Interpretación:</strong> Este caso muestra claramente cómo se combinan áreas positivas y negativas. El uso del valor absoluto garantiza que todas las regiones contribuyan de forma positiva al área total.
+  </p>
+  <a href="https://youtu.be/lys7Eg9zrEs?si=pjwNFuuFcDST4U7h" target="_blank">
+    Ver video del Ejemplo 3
+  </a>
+
+</div>
+
   </section>
 
   <section id="aplicaciones" class="hidden">
@@ -344,5 +387,6 @@
 </body>
 
 </html>
+
 
 
